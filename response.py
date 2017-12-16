@@ -44,4 +44,5 @@ def post_multipart(url, data):
     h.putheader('content-length', str(len(body)))
     h.endheaders()
     h.send(body)
+    errcode, errmsg, headers = h.getreply()
     return h.file.read()

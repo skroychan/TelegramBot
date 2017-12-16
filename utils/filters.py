@@ -5,7 +5,7 @@ import re
 
 def command(text, command_name, split=True, separator=' ', cut_command=True):
     command_name = '/' + command_name
-    pattern = '^' + command_name + '\\b'
+    pattern = '^' + command_name + '(\\s|$)'
 
     if text == command_name:
         return []

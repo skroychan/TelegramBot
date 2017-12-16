@@ -37,3 +37,5 @@ def handle(update):
 
 
 app = webapp2.WSGIApplication([(WEBHOOK_URL, WebhookHandler)], debug=True)
+
+debug("I'm alive!")
