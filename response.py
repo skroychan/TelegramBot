@@ -9,7 +9,7 @@ def send_response(method, data):
         if any(isinstance(x, File) and x.is_binary for x in data.values()):
             post_multipart(BASE_URL + method, data)
         else:
-            urllib.request.urlopen(BASE_URL + method, urllib.parse.urlencode(data, True).encode('utf-8')).read()
+            urllib.request.urlopen(BASE_URL + method, urllib.parse.urlencode(data, doseq=True).encode('utf-8')).read()
         return True
     except Exception as e:
         logging.info('Data:\n' + str(data) + '\nException:\n' + repr(e))
