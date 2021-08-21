@@ -5,7 +5,7 @@ import handlers
 
 from flask import Flask, request
 
-import os.path, pkgutil, importlib
+import os.path, pkgutil, importlib, traceback
 import json
 
 
@@ -33,7 +33,7 @@ def handle(update):
 			if result:
 				break
 		except Exception as e:
-			debug(handler.__module__ + '\n' + repr(e))
+			debug('Update:\n`' + json.dumps(update.json) + '`\n\nTraceback:\n`' + traceback.format_exc() + '`')
 
 
 debug("I'm alive!")
