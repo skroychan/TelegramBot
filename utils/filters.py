@@ -1,4 +1,4 @@
-from config import BOT_NAME
+from config import BOT_NAME, BOT_USERNAME
 
 import re
 
@@ -7,6 +7,7 @@ def command(text, command_name, split=True, separator=' ', cut_command=True):
     command_name = '/' + command_name
     pattern = '^' + command_name + '(\\s|$)'
 
+    text = text.replace('@' + BOT_USERNAME, '')
     if text == command_name:
         return []
     if re.search(pattern, text):
