@@ -1,4 +1,4 @@
-from api.method import send_message
+from api.method import send_message, delete_message
 from utils import filters, message_utils
 
 help_text = '*Sends* a message.\nUsage: /send to=<chatid> <text>. `to` is optional.'
@@ -28,5 +28,8 @@ def handler(update):
                     result += param + ' '
 
         if result:
-            send_message(to, result.encode('utf-8'))
+            reply_message_id = message.reply_to_message.message_id if message.reply_to_message else None
+            if to == message.chat.id:
+                delete_message(message.chat.id, message.message_id)
+            send_message(to, result, parse_mode="Markdown", reply_to_message_id=reply_message_id)
             return True
