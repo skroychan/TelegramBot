@@ -56,7 +56,7 @@ def build_patterns():
 		pattern = '(?:' + value_pattern + ' *' + multiplier_pattern + ' *(?:' + postfix_pattern +'))(?:$|\s|[,.:!*;\/\)\(])'
 
 		if currency_match_info and currency_match_info.sign_regex:
-			pattern = '(?:' + currency_match_info.sign_regex + value_pattern + ' *' + multiplier_pattern + '|' + pattern + ')'
+			pattern = '(?:' + currency_match_info.sign_regex + ' *' + value_pattern + ' *' + multiplier_pattern + '|' + pattern + ')'
 
 		patterns.append((currency_code, pattern))
 
