@@ -1,5 +1,5 @@
 from api.entity import Update
-from config import WEBHOOK_URL, DATABASE_URI
+import config
 from utils.debug import debug
 import handlers
 
@@ -19,7 +19,7 @@ for _, module_name, _ in pkgutil.iter_modules([pkg_path]):
 	handler_funcs.append(getattr(m, handler_func_name))
 
 
-@app.route(WEBHOOK_URL, methods=['POST'])
+@app.route(config.WEBHOOK_URL, methods=['POST'])
 def post():
 	update = Update(request.get_json())
 	handle(update)
@@ -34,6 +34,6 @@ def handle(update):
 				break
 		except Exception as e:
 			debug('Update:\n`' + json.dumps(update.json) + '`\n\nTraceback:\n`' + traceback.format_exc() + '`')
-
+			
 
 debug("I'm alive!")
